@@ -1,17 +1,20 @@
 import cv2;
 
-image = cv2.imread("content/images/people1.jpg")
+colorfulImage = cv2.imread("content/Images/people1.jpg")
 
-print(image.shape)
+colorfulImage = cv2.resize(colorfulImage, (800, 600))
 
-image = cv2.resize(image, (800, 600))
+grayScaleImage = cv2.cvtColor(colorfulImage, cv2.COLOR_BGR2GRAY)
 
-grayScaleImage = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+faceDetector = cv2.CascadeClassifier("content/Cascades/haarcascade_frontalface_default.xml")
 
-cv2.imshow("sample", grayScaleImage)
+detections = faceDetector.detectMultiScale(colorfulImage, scaleFactor = 1.09)
 
-print(grayScaleImage.shape)
+#print(detections)
+
+for xaxis, yaxis, heigth, width in detections:
+    cv2.rectangle(colorfulImage, (xaxis, yaxis), (xaxis + width, yaxis + heigth), (0, 255, 255), 5)
+
+cv2.imshow("sample", colorfulImage)
 
 cv2.waitKey(0)
-
-cv2.destroyAllWindows()
