@@ -1,6 +1,6 @@
-import cv2;
+import cv2
 
-colorFulImage = cv2.imread("Content\Images\car.jpg")
+colorFulImage = cv2.imread("content\Images\car.jpg")
 
 grayScaleImage = cv2.cvtColor(colorFulImage, cv2.COLOR_BGR2GRAY)
 

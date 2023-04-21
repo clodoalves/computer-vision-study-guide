@@ -1,9 +1,9 @@
 import dlib
 import cv2
 
-selectedImage = cv2.imread("Content\Images\people2.jpg")
+selectedImage = cv2.imread("content/Images/people2.jpg")
 
-faceDetector = dlib.cnn_face_detection_model_v1("Content\Weights\mmod_human_face_detector.dat")
+faceDetector = dlib.cnn_face_detection_model_v1("content/Weights/mmod_human_face_detector.dat")
 
 detections = faceDetector(selectedImage, 1)
 
