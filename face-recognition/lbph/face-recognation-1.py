@@ -5,6 +5,8 @@ import os
 import cv2
 from sklearn.metrics import accuracy_score
 
+#Yale faces database: http://cvc.cs.yale.edu/cvc/projects/yalefaces/yalefaces.html
+
 #loading database
 zipObject = zipfile.ZipFile(file="content/Datasets/yalefaces.zip", mode = "r")
 zipObject.extractall("./content/Images")
@@ -35,25 +37,13 @@ lbphClassifier.write("content/GeneratedClassifiers/lbph_classifier.yml")
 #Face recognition
 def GetPredictedAndExpectedValues(imagePath):   
     grayScaleTestImage = Image.open(imagePath).convert('L')
-    expectedSubjectId = str(getIdSubject(imagePath))
     testImageNp = numpy.array(grayScaleTestImage, 'uint8')
-    predction = lbphClassifier.predict(testImageNp)
-    predictedSubjectId = str(predction[0])
+    prediction = lbphClassifier.predict(testImageNp)
+    predictedSubjectId = str(prediction[0])
+    
+    expectedSubjectId = str(getIdSubject(imagePath))
 
     return predictedSubjectId, expectedSubjectId
-
-'''pathImage = "content/Images/yalefaces/test/subject01.gif"
-
-predictedSubjectId, expectedSubjectId = GetPredictedAndExpectedValues(pathImage)
-image = Image.open(pathImage).convert('L')
-testImageNp = numpy.array(image, 'uint8')
-
-cv2.putText(testImageNp, "Predicted: "+ predictedSubjectId, (10,30), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1,(0,255,0))
-cv2.putText(testImageNp, "Expected: "+ expectedSubjectId, (10,50), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0,255,0))
-cv2.imshow("Foo", testImageNp)
-
-cv2.waitKey(0)
-cv2.destroyAllWindows()'''
 
 #Classifier evaluation
 predictedSubjectIds = []
