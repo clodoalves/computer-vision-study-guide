@@ -20,4 +20,6 @@ So far, this repo has samples for the following computer vision techniques:
 - OpenCV
 - Dlib
 - PIL
-- numpy
+- NumPy
+
+Please, add your datasets for use in the samples. 
