@@ -1,13 +1,15 @@
 import cv2
 
 tracker = cv2.TrackerKCF_create()
-video = cv2.VideoCapture("Content/Videos/street.mp4")
+video = cv2.VideoCapture("content/Videos/street.mp4")
 
 isOk, frame = video.read()
 bbox = cv2.selectROI(frame)
 tracker.init(frame, bbox)
 
-while(not(cv2.waitKey(1) & 0XFF == 27) and isOk):
+escASCIICode = 27
+
+while(not(cv2.waitKey(1) & 0XFF == escASCIICode) or isOk):
     isOk, frame = video.read()    
     isOk, bbox = tracker.update(frame)
     
