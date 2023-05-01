@@ -5,7 +5,7 @@ colorFul = cv2.imread("content/Images/people3.jpg")
 
 detector = dlib.cnn_face_detection_model_v1("content/Weights/mmod_human_face_detector.dat")
 
-detections = detector(colorFul,4)
+detections = detector(colorFul, 4)
 
 rectangleColor = (255, 0, 0)
 
