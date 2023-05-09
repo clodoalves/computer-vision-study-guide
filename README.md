@@ -16,6 +16,8 @@ So far, this repo has samples for the following computer vision techniques:
     - CSRT (Discriminative Correlation Filter with Channel and Spatial Reliability)
     - Kernal Correlation Filters (KCF)
 
+This repository has also samples with the basic of OpenCV using C++. I'm following the examples shown on [OpenCV Tutorial C++](https://www.opencv-srf.com/p/introduction.html)
+
 ## Used libs:
 - OpenCV
 - Dlib
