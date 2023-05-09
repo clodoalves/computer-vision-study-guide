@@ -68,4 +68,38 @@ void PlayVideo()
 
 void PlayVideoFromWebCam() 
 {
+	//Open default video camera
+	VideoCapture cap(0);
+
+	if (!cap.isOpened()) 
+	{
+		cout << "Cannot open the video camera" << endl;
+		cin.get();
+	}
+
+	double framesWidth = cap.get(CAP_PROP_FRAME_WIDTH);
+	double framesHeight = cap.get(CAP_PROP_FRAME_HEIGHT);
+
+
+	cout << "Video resolution: " << framesWidth << "x" << framesHeight << endl;
+
+	string windowName = "My camera";
+	namedWindow(windowName);
+
+	bool success = true;
+
+	while (success) 
+	{
+		Mat frame; 
+		success = cap.read(frame);
+
+		if (success)
+			imshow(windowName, frame);
+		
+		if (waitKey(10) == 27)
+		{
+			cout << "Esc key is pressed by user. Stoppig the video" << endl;
+			break;
+		}
+	}
 }
