@@ -194,3 +194,21 @@ void SaveWebcamFrameToFile()
 
 	videoWriter.release();
 }
+
+void ChangeImageBrightness(char* imagePath, int brightnessValue, char* windowName)
+{
+	Mat image = imread(imagePath);
+
+	Mat imageWithBrigthness;
+
+	image.convertTo(imageWithBrigthness, -1, 1, brightnessValue);
+
+	namedWindow(windowName, WINDOW_NORMAL);
+
+	imshow("Original Image", image);
+	imshow(windowName, imageWithBrigthness);
+
+	waitKey(0);
+
+	destroyAllWindows();
+}
