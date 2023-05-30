@@ -212,3 +212,71 @@ void ChangeImageBrightness(char* imagePath, int brightnessValue, char* windowNam
 
 	destroyAllWindows();
 }
+
+void GrayscaleImageHistogramEqualization(char* imagePath) 
+{
+	Mat image = imread(imagePath);
+
+	if (image.empty()) 
+	{
+		cout << "Could not open the image" << endl;
+		cin.get();
+		return;
+	}
+
+	cvtColor(image, image, COLOR_BGR2GRAY);
+
+	Mat histEqualizedImage;
+	equalizeHist(image, histEqualizedImage);
+
+	char originalImageWindow[] = "originalImageWindow";
+	namedWindow(originalImageWindow, WINDOW_NORMAL);
+	imshow(originalImageWindow, image);
+
+	char equalizedImageWindow[] = "equalizedImageWindow";
+	namedWindow(equalizedImageWindow, WINDOW_NORMAL);
+	imshow(equalizedImageWindow, histEqualizedImage);
+
+
+	waitKey(0);
+
+	destroyAllWindows();
+}
+
+void ColorfulImageHistogramEqualization(char* imagePath) 
+{
+	Mat image = imread(imagePath);
+
+	if (image.empty()) 
+	{
+		cout << "could not open the image" << endl;
+		cin.get();
+		return;
+	}
+
+	Mat histEqualizedImage;
+
+	cvtColor(image, histEqualizedImage, COLOR_BGR2YCrCb);
+
+	vector<Mat> channels;
+
+	split(histEqualizedImage, channels);
+
+	equalizeHist(channels[0], channels[0]);
+
+	merge(channels, histEqualizedImage);
+
+	cvtColor(histEqualizedImage, histEqualizedImage, COLOR_YCrCb2BGR);
+
+	char originalImageWindow[] = "originalImageWindow";
+	namedWindow(originalImageWindow, WINDOW_NORMAL);
+	imshow(originalImageWindow, image);
+
+	char equalizedImageWindow[] = "equalizedImageWindow";
+	namedWindow(equalizedImageWindow, WINDOW_NORMAL);
+	imshow(equalizedImageWindow, histEqualizedImage);
+
+	waitKey(0);
+
+	destroyAllWindows();
+}

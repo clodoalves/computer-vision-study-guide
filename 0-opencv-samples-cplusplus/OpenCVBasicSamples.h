@@ -10,4 +10,10 @@ void SaveImageToFile();
 
 void SaveWebcamFrameToFile();
 
-void ChangeImageBrightness(char* imagePath, int brightnessValue, char* windowName);
+void ChangeImageBrightness(char* imagePath, int brightnessValue);
+
+void ChangeImageContrast(char* imagePath, int contrastValue);
+
+void GrayscaleImageHistogramEqualization(char* imagePath);
+
+void ColorfulImageHistogramEqualization(char* imagePath);
